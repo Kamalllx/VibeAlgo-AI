@@ -152,19 +152,19 @@ graph LR
 
 ## 8. Development Roadmap
 
-### Phase 1: Core Infrastructure (6 Weeks)
+### Phase 1: Core Infrastructure 
 - Setup MCP protocol servers
 - Implement AST parser microservice
 - Build basic Chrome extension scaffold
 - Integrate ChromaDB knowledge base
 
-### Phase 2: AI Integration (4 Weeks)
+### Phase 2: AI Integration 
 - Train complexity prediction model
 - Implement RAG pipeline
 - Develop strategy optimization logic
 - Create visualization components
 
-### Phase 3: Polishing (2 Weeks)
+### Phase 3: Polishing 
 - Performance optimization
 - Security audits
 - User testing
