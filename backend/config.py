@@ -13,7 +13,7 @@ class Config:
     
     # AI Configuration
     MAX_CODE_LENGTH = 10000
-    DEFAULT_MODEL = 'llama3-70b-8192'
+    DEFAULT_MODEL = 'meta-llama/llama-4-scout-17b-16e-instruct'
     
     # Performance Configuration  
     REQUEST_TIMEOUT = 30

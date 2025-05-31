@@ -1,4 +1,4 @@
-# backend/api/complexity.py (ENHANCED)
+# backend/api/complexity.py (FIXED)
 from flask import Blueprint, request, jsonify
 import asyncio
 from core.agent_orchestrator import orchestrator
@@ -7,7 +7,7 @@ bp = Blueprint('complexity', __name__)
 
 @bp.route('/analyze', methods=['POST'])
 def analyze_code_complexity():
-    """Enhanced agentic complexity analysis with full visibility"""
+    """Enhanced agentic complexity analysis with full visibility - FIXED"""
     
     def run_async_analysis():
         return asyncio.run(orchestrator.process_request("complexity_analysis", {
@@ -26,7 +26,7 @@ def analyze_code_complexity():
         # Run agentic analysis
         result = run_async_analysis()
         
-        # Extract key data for response
+        # Extract key data for response - FIXED KEY NAMES
         agent_result = result["agent_result"]
         complexity_data = agent_result["complexity_analysis"]
         
@@ -40,7 +40,7 @@ def analyze_code_complexity():
                 "suggestions": complexity_data.get("suggestions", [])
             },
             "ai_processing_details": agent_result["ai_processing"],
-            "rag_knowledge": agent_result["rag_knowledge"],
+            "rag_knowledge": agent_result["enhanced_rag_context"],  # FIXED: Use correct key
             "agent_metadata": {
                 "agent_name": agent_result["agent_name"],
                 "confidence": agent_result["confidence_score"],

@@ -17,7 +17,7 @@ class GroqClient:
     def __init__(self, api_key: Optional[str] = None):
         self.api_key = "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"
         self.base_url = "https://api.groq.com/openai/v1"  # Correct endpoint
-        self.default_model = "llama3-70b-8192"  # Verify this model exists
+        self.default_model = "meta-llama/llama-4-scout-17b-16e-instruct"  # Verify this model exists
         
         print(f"🔑 Groq API Key: {'SET' if self.api_key else 'MISSING'}")
         print(f"🌐 Groq Base URL: {self.base_url}")
@@ -72,6 +72,7 @@ class GroqClient:
             
             # Try alternative model names if default fails
             model_alternatives = [
+                "meta-llama/llama-4-scout-17b-16e-instruct",
                 "llama3-70b-8192",
                 "llama-3.1-70b-versatile", 
                 "llama-3.3-70b-versatile",
