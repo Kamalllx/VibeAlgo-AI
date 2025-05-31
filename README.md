@@ -135,6 +135,7 @@ graph LR
 6. Visualization Data Packaging
 
 ### 6.2 Performance Characteristics
+```
 - Initial Analysis:  B[JWT Authentication]
     B --> C[WASM Sandbox]
     C --> D[AST Validation Layer]
@@ -182,27 +183,3 @@ graph LR
 | Security Vulnerabilities| 0 Critical             | OWASP ZAP Scans             |
 
 ---
-
-## 10. Contribution Guidelines
-
-### 10.1 Development Setup
-```bash
-# Clone repo
-git clone --recurse-submodules https://github.com/algointel/suite.git
-
-# Install dependencies
-npm run bootstrap
-
-# Start dev environment
-docker-compose -f dev-stack.yml up
-```
-
-### 10.2 Key Directories
-```
-/src
-  /extension - Chrome extension UI
-  /services - Microservices
-  /models - AI training code
-/docs - Architecture diagrams
-/test - Cypress + Jest tests
-```
