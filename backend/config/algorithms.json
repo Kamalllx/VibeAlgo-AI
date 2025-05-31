@@ -1,0 +1,57 @@
+{
+  "sorting": {
+    "bubble_sort": {
+      "name": "Bubble Sort",
+      "time_complexity": "O(n²)",
+      "space_complexity": "O(1)",
+      "category": "sorting",
+      "difficulty": "easy"
+    },
+    "merge_sort": {
+      "name": "Merge Sort", 
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)",
+      "category": "sorting",
+      "difficulty": "medium"
+    },
+    "quick_sort": {
+      "name": "Quick Sort",
+      "time_complexity": "O(n log n) average, O(n²) worst",
+      "space_complexity": "O(log n)",
+      "category": "sorting", 
+      "difficulty": "medium"
+    }
+  },
+  "searching": {
+    "linear_search": {
+      "name": "Linear Search",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)",
+      "category": "searching",
+      "difficulty": "easy"
+    },
+    "binary_search": {
+      "name": "Binary Search",
+      "time_complexity": "O(log n)",
+      "space_complexity": "O(1)",
+      "category": "searching",
+      "difficulty": "easy"
+    }
+  },
+  "graph": {
+    "dfs": {
+      "name": "Depth-First Search",
+      "time_complexity": "O(V + E)",
+      "space_complexity": "O(V)",
+      "category": "graph",
+      "difficulty": "medium"
+    },
+    "bfs": {
+      "name": "Breadth-First Search", 
+      "time_complexity": "O(V + E)",
+      "space_complexity": "O(V)",
+      "category": "graph",
+      "difficulty": "medium"
+    }
+  }
+}

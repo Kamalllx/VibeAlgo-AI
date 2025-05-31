@@ -1,0 +1,220 @@
+{
+  "code_samples": [
+    {
+      "name": "Simple O(1) Operation",
+      "code": "return arr[0] if arr else None",
+      "expected_complexity": "O(1)"
+    },
+    {
+      "name": "Linear Search O(n)",
+      "code": "def linear_search(arr, target):\n    for i, val in enumerate(arr):\n        if val == target:\n            return i\n    return -1",
+      "expected_complexity": "O(n)"
+    },
+    {
+      "name": "Binary Search O(log n)",
+      "code": "def binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1",
+      "expected_complexity": "O(log n)"
+    },
+    {
+      "name": "Bubble Sort O(n\u00b2)",
+      "code": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n-i-1):\n            if arr[j] > arr[j+1]:\n                arr[j], arr[j+1] = arr[j+1], arr[j]\n    return arr",
+      "expected_complexity": "O(n\u00b2)"
+    }
+  ],
+  "dsa_progress": [
+    {
+      "problem_id": "leetcode_1",
+      "status": "mastered",
+      "difficulty": "easy",
+      "topic": "strings",
+      "time_spent": 47
+    },
+    {
+      "problem_id": "leetcode_2",
+      "status": "attempted",
+      "difficulty": "medium",
+      "topic": "sorting",
+      "time_spent": 90
+    },
+    {
+      "problem_id": "leetcode_3",
+      "status": "solved",
+      "difficulty": "hard",
+      "topic": "searching",
+      "time_spent": 17
+    },
+    {
+      "problem_id": "leetcode_4",
+      "status": "solved",
+      "difficulty": "easy",
+      "topic": "graphs",
+      "time_spent": 9
+    },
+    {
+      "problem_id": "leetcode_5",
+      "status": "solved",
+      "difficulty": "hard",
+      "topic": "graphs",
+      "time_spent": 31
+    },
+    {
+      "problem_id": "leetcode_6",
+      "status": "solved",
+      "difficulty": "easy",
+      "topic": "sorting",
+      "time_spent": 71
+    },
+    {
+      "problem_id": "leetcode_7",
+      "status": "mastered",
+      "difficulty": "easy",
+      "topic": "arrays",
+      "time_spent": 25
+    },
+    {
+      "problem_id": "leetcode_8",
+      "status": "attempted",
+      "difficulty": "easy",
+      "topic": "dynamic_programming",
+      "time_spent": 14
+    },
+    {
+      "problem_id": "leetcode_9",
+      "status": "mastered",
+      "difficulty": "medium",
+      "topic": "dynamic_programming",
+      "time_spent": 6
+    },
+    {
+      "problem_id": "leetcode_10",
+      "status": "solved",
+      "difficulty": "medium",
+      "topic": "trees",
+      "time_spent": 34
+    },
+    {
+      "problem_id": "leetcode_11",
+      "status": "mastered",
+      "difficulty": "hard",
+      "topic": "graphs",
+      "time_spent": 73
+    },
+    {
+      "problem_id": "leetcode_12",
+      "status": "solved",
+      "difficulty": "medium",
+      "topic": "sorting",
+      "time_spent": 90
+    },
+    {
+      "problem_id": "leetcode_13",
+      "status": "attempted",
+      "difficulty": "hard",
+      "topic": "searching",
+      "time_spent": 34
+    },
+    {
+      "problem_id": "leetcode_14",
+      "status": "mastered",
+      "difficulty": "easy",
+      "topic": "trees",
+      "time_spent": 37
+    },
+    {
+      "problem_id": "leetcode_15",
+      "status": "solved",
+      "difficulty": "hard",
+      "topic": "strings",
+      "time_spent": 5
+    },
+    {
+      "problem_id": "leetcode_16",
+      "status": "solved",
+      "difficulty": "easy",
+      "topic": "strings",
+      "time_spent": 36
+    },
+    {
+      "problem_id": "leetcode_17",
+      "status": "attempted",
+      "difficulty": "medium",
+      "topic": "strings",
+      "time_spent": 22
+    },
+    {
+      "problem_id": "leetcode_18",
+      "status": "solved",
+      "difficulty": "medium",
+      "topic": "graphs",
+      "time_spent": 82
+    },
+    {
+      "problem_id": "leetcode_19",
+      "status": "attempted",
+      "difficulty": "easy",
+      "topic": "searching",
+      "time_spent": 57
+    },
+    {
+      "problem_id": "leetcode_20",
+      "status": "attempted",
+      "difficulty": "hard",
+      "topic": "trees",
+      "time_spent": 30
+    }
+  ],
+  "contest_submissions": [
+    {
+      "problem_id": "A",
+      "submission_time": "2025-05-31T08:58:27.259341",
+      "time_taken": 13,
+      "status": "solved",
+      "score": 1702.0,
+      "attempts": 1
+    },
+    {
+      "problem_id": "B",
+      "submission_time": "2025-05-31T09:35:27.259341",
+      "time_taken": 37,
+      "status": "attempted",
+      "score": 12.0,
+      "attempts": 2
+    },
+    {
+      "problem_id": "C",
+      "submission_time": "2025-05-31T10:01:27.259341",
+      "time_taken": 26,
+      "status": "solved",
+      "score": 1867.0,
+      "attempts": 3
+    },
+    {
+      "problem_id": "D",
+      "submission_time": "2025-05-31T10:58:27.259341",
+      "time_taken": 57,
+      "status": "solved",
+      "score": 1467.0,
+      "attempts": 1
+    },
+    {
+      "problem_id": "E",
+      "submission_time": "2025-05-31T11:27:27.259341",
+      "time_taken": 29,
+      "status": "attempted",
+      "score": 198.0,
+      "attempts": 3
+    },
+    {
+      "problem_id": "F",
+      "submission_time": "2025-05-31T11:37:27.259341",
+      "time_taken": 10,
+      "status": "attempted",
+      "score": 147.0,
+      "attempts": 1
+    }
+  ],
+  "metadata": {
+    "generated_at": "2025-05-31T11:45:27.259341",
+    "version": "1.0"
+  }
+}

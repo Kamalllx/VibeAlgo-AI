@@ -1,0 +1,28 @@
+{
+  "codeforces": {
+    "name": "Codeforces",
+    "url_pattern": "codeforces.com/contest/",
+    "api_endpoint": "https://codeforces.com/api/",
+    "selectors": {
+      "contest_title": ".contest-name",
+      "problems_list": ".problems tr",
+      "standings": ".standings"
+    }
+  },
+  "atcoder": {
+    "name": "AtCoder", 
+    "url_pattern": "atcoder.jp/contests/",
+    "selectors": {
+      "contest_title": ".contest-title",
+      "problems_list": ".table-responsive table tr"
+    }
+  },
+  "leetcode": {
+    "name": "LeetCode Contest",
+    "url_pattern": "leetcode.com/contest/",
+    "selectors": {
+      "contest_title": "[data-cy=contest-title]",
+      "problems_list": ".contest-question-list"
+    }
+  }
+}

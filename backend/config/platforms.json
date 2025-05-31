@@ -1,0 +1,35 @@
+{
+  "leetcode": {
+    "name": "LeetCode",
+    "url": "leetcode.com",
+    "selectors": {
+      "code_editor": ".monaco-editor",
+      "problem_title": "[data-cy=question-title]",
+      "difficulty": "[data-difficulty]"
+    }
+  },
+  "hackerrank": {
+    "name": "HackerRank", 
+    "url": "hackerrank.com",
+    "selectors": {
+      "code_editor": ".CodeMirror",
+      "problem_title": ".problem-statement h1"
+    }
+  },
+  "codeforces": {
+    "name": "Codeforces",
+    "url": "codeforces.com", 
+    "selectors": {
+      "code_editor": ".CodeMirror",
+      "problem_title": ".problem-statement .title"
+    }
+  },
+  "atcoder": {
+    "name": "AtCoder",
+    "url": "atcoder.jp",
+    "selectors": {
+      "code_editor": ".CodeMirror",
+      "problem_title": "#main-container h2"
+    }
+  }
+}
