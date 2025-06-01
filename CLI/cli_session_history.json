@@ -1,0 +1,20 @@
+[
+  {
+    "session_id": "20250601_185838_1",
+    "timestamp": "2025-06-01 18:58:55.936123",
+    "input": "Given piles of bananas and hours, return the minimum eating speed K such that Koko can finish in h h...",
+    "input_type": "auto"
+  },
+  {
+    "session_id": "20250601_190500_2",
+    "timestamp": "2025-06-01 19:05:17.989314",
+    "input": "dijkstras algorithm",
+    "input_type": "auto"
+  },
+  {
+    "session_id": "20250601_190633_3",
+    "timestamp": "2025-06-01 19:07:00.020818",
+    "input": "explain Dijkstras algorithm with an example",
+    "input_type": "auto"
+  }
+]

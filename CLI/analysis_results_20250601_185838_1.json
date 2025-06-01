@@ -1,0 +1,218 @@
+{
+  "input": "Given piles of bananas and hours, return the minimum eating speed K such that Koko can finish in h hours.",
+  "input_type": "auto",
+  "options": {
+    "alternative_approaches": true,
+    "code_optimization": true,
+    "detailed_complexity": true,
+    "include_educational": true,
+    "include_performance": true,
+    "include_visualization": true
+  },
+  "session_id": "20250601_185838_1",
+  "stages": {
+    "complexity_analysis": {
+      "agent_result": {
+        "agent_name": "ComplexityAnalyzer",
+        "ai_processing": {
+          "extraction_response": "```json\n{\n  \"time_complexity\": \"O(n log m)\",\n  \"space_complexity\": \"O(1)\",\n  \"reasoning\": \"The code uses a binary search approach with a helper function to calculate the total hours needed to finish eating the bananas at a given eating speed.\",\n  \"loop_count\": 2,\n  \"nested_depth\": 2,\n  \"suggestions\": [\"Consider adding input validation for piles and h\", \"Use more descriptive variable names for better readability\"]\n}\n```",
+          "extraction_tokens": 827,
+          "rag_enhanced": true,
+          "reasoning_response": "**Problem Statement**\nGiven piles of bananas and hours, return the minimum eating speed K such that Koko can finish in h hours.\n\n**Provided Code**\n```python\ndef minEatingSpeed(piles, h):\n    def canFinish(piles, k, h):\n        return sum((p + k - 1) // k for p in piles) <= h\n\n    lo, hi = 1, max(piles)\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if canFinish(piles, mid, h):\n            hi = mid\n        else:\n            lo = mid + 1\n    return lo\n```\n**Step-by-Step Analysis**\n\n### 1. Overview of the Algorithm\n\nThe provided code uses a binary search approach to find the minimum eating speed `K` that allows Koko to finish eating the bananas within `h` hours.\n\n### 2. Time Complexity Analysis\n\n#### `canFinish` Function\n\n* The `canFinish` function calculates the total hours needed to finish eating the bananas at a given eating speed `k`.\n* It uses a generator expression to sum up the hours needed for each pile of bananas: `sum((p + k - 1) // k for p in piles)`.\n* The time complexity of this function is **O(n)**, where `n` is the number of piles of bananas.\n\n#### `minEatingSpeed` Function\n\n* The `minEatingSpeed` function uses a binary search approach to find the minimum eating speed `K`.\n* The binary search loop runs until `lo` and `hi` converge.\n* In each iteration, the `canFinish` function is called, which has a time complexity of **O(n)**.\n* The number of iterations in the binary search loop is **O(log m)**, where `m` is the maximum number of bananas in a pile (i.e., `max(piles)`).\n* Therefore, the overall time complexity of the `minEatingSpeed` function is **O(n log m)**.\n\n### 3. Space Complexity Analysis\n\n* The `minEatingSpeed` function uses a constant amount of space to store the `lo`, `hi`, and `mid` variables.\n* The `canFinish` function uses a generator expression, which does not allocate any additional memory that scales with the input size.\n* Therefore, the space complexity of the `minEatingSpeed` function is **O(1)**.\n\n**Conclusion**\n\n* Time Complexity: **O(n log m)**, where `n` is the number of piles of bananas and `m` is the maximum number of bananas in a pile.\n* Space Complexity: **O(1)**, which means the space usage does not grow with the input size.\n\nThe provided code has an efficient time complexity, making it suitable for large inputs. The space complexity is constant, which is ideal for memory-constrained environments.",
+          "reasoning_tokens": 1208,
+          "total_tokens": 2035
+        },
+        "analysis_timestamp": "2025-06-01T18:58:42.582605",
+        "complexity_analysis": {
+          "loop_count": 2,
+          "nested_depth": 2,
+          "reasoning": "The code uses a binary search approach with a helper function to calculate the total hours needed to finish eating the bananas at a given eating speed.",
+          "space_complexity": "O(1)",
+          "suggestions": [
+            "Consider adding input validation for piles and h",
+            "Use more descriptive variable names for better readability"
+          ],
+          "time_complexity": "O(n log m)"
+        },
+        "confidence_score": 0.9,
+        "enhanced_rag_context": [
+          {
+            "category": "fundamentals",
+            "content": "Big O notation describes the upper bound of algorithm performance as input size grows.\n\nCommon complexities:\n- O(1): Constant time - performance doesn't change with input size\n- O(log n): Logarithmic time - halving search space each step\n- O(n): Linear time - performance grows linearly with input size  \n- O(n log n): Linearithmic time - efficient sorting algorithms\n- O(n\u00b2): Quadratic time - nested loops, bubble sort\n- O(2^n): Exponential time - recursive Fibonacci\n\nAnalysis types:\n- Best Case: m...",
+            "full_content": "Big O notation describes the upper bound of algorithm performance as input size grows.\n\nCommon complexities:\n- O(1): Constant time - performance doesn't change with input size\n- O(log n): Logarithmic time - halving search space each step\n- O(n): Linear time - performance grows linearly with input size  \n- O(n log n): Linearithmic time - efficient sorting algorithms\n- O(n\u00b2): Quadratic time - nested loops, bubble sort\n- O(2^n): Exponential time - recursive Fibonacci\n\nAnalysis types:\n- Best Case: minimum time needed\n- Average Case: expected time for random input\n- Worst Case: maximum time needed (most important)\n\nRules for calculating:\n1. Drop constants: O(2n) becomes O(n)\n2. Drop non-dominant terms: O(n\u00b2 + n) becomes O(n\u00b2)\n3. Consider worst-case scenario\n4. Focus on input size approaching infinity",
+            "id": "91a8e4959edb",
+            "quality_score": 4.489348615472405,
+            "relevance_score": 0.36773860454559326,
+            "source": "CLRS Introduction to Algorithms",
+            "subcategory": "complexity_analysis",
+            "tags": [
+              "big-o",
+              "time-complexity",
+              "performance",
+              "analysis"
+            ],
+            "title": "Big O Notation Fundamentals"
+          },
+          {
+            "category": "algorithms",
+            "content": "BFS explores graph level by level using a queue data structure.\n\nTime Complexity: O(V + E) where V = vertices, E = edges\nSpace Complexity: O(V) for queue storage\n\nAlgorithm:\nfrom collections import deque\n\ndef bfs(graph, start):\nvisited = set()\nqueue = deque([start])\nvisited.add(start)\nwhile queue:\n    vertex = queue.popleft()\n    process(vertex)\n    \n    for neighbor in graph[vertex]:\n        if neighbor not in visited:\n            visited.add(neighbor)\n            queue.append(neighbor)\n\nKey Pr...",
+            "full_content": "BFS explores graph level by level using a queue data structure.\n\nTime Complexity: O(V + E) where V = vertices, E = edges\nSpace Complexity: O(V) for queue storage\n\nAlgorithm:\nfrom collections import deque\n\ndef bfs(graph, start):\nvisited = set()\nqueue = deque([start])\nvisited.add(start)\nwhile queue:\n    vertex = queue.popleft()\n    process(vertex)\n    \n    for neighbor in graph[vertex]:\n        if neighbor not in visited:\n            visited.add(neighbor)\n            queue.append(neighbor)\n\nKey Properties:\n- Finds shortest path in unweighted graphs\n- Explores vertices in order of distance from start\n- Guarantees minimum number of edges in path\n- Level-by-level exploration pattern\n\nApplications:\n- Shortest path in unweighted graphs\n- Level-order tree traversal\n- Finding connected components\n- Bipartite graph detection\n- Web crawling with depth limits\n- Social network analysis (degrees of separation)\n\nShortest Path with BFS:\ndef bfs_shortest_path(graph, start, target):\nqueue = deque([(start, [start])])\nvisited = {start}\nwhile queue:\n    vertex, path = queue.popleft()\n    if vertex == target:\n        return path\n        \n    for neighbor in graph[vertex]:\n        if neighbor not in visited:\n            visited.add(neighbor)\n            queue.append((neighbor, path + [neighbor]))\n\nreturn None  # No path found\n\nDistance Tracking:\n- Maintain distance array: dist[v] = shortest distance to v\n- Parent tracking: parent[v] = previous vertex in shortest path\n- Path reconstruction by following parent pointers\n\nBFS vs DFS Comparison:\n- BFS: shortest path, level-by-level, queue-based, O(V) space\n- DFS: deeper exploration, stack-based, O(V) space, path finding\n\nVariants:\n- Multi-source BFS: start from multiple vertices simultaneously\n- Bidirectional BFS: search from both start and target\n- 0-1 BFS: for graphs with edge weights 0 or 1\n\nTime Complexity Analysis:\n- Each vertex enqueued and dequeued once: O(V)\n- Each edge examined exactly once: O(E)\n- Total: O(V + E)\n\nUse Cases:\n- Finding shortest unweighted paths\n- Level-order processing\n- Minimum spanning tree algorithms\n- Network broadcast protocols",
+            "id": "91b164b8f16d",
+            "quality_score": 4.479957540860424,
+            "relevance_score": 0.29009777307510376,
+            "source": "Introduction to Algorithms (CLRS)",
+            "subcategory": "graph_algorithms",
+            "tags": [
+              "bfs",
+              "shortest-path",
+              "level-order",
+              "queue",
+              "O(V+E)"
+            ],
+            "title": "Breadth-First Search (BFS) Analysis"
+          },
+          {
+            "category": "algorithms",
+            "content": "DFS explores graph by going as deep as possible before backtracking.\n\nTime Complexity: O(V + E) where V = vertices, E = edges\nSpace Complexity: O(V) for recursion stack or explicit stack\n\nAlgorithm (Recursive):\ndef dfs(graph, start, visited=set()):\nvisited.add(start)\nprocess(start)\nfor neighbor in graph[start]:\nif neighbor not in visited:\ndfs(graph, neighbor, visited)\n\nAlgorithm (Iterative):\ndef dfs_iterative(graph, start):\nvisited = set()\nstack = [start]\nwhile stack:\nvertex = stack.pop()\nif ver...",
+            "full_content": "DFS explores graph by going as deep as possible before backtracking.\n\nTime Complexity: O(V + E) where V = vertices, E = edges\nSpace Complexity: O(V) for recursion stack or explicit stack\n\nAlgorithm (Recursive):\ndef dfs(graph, start, visited=set()):\nvisited.add(start)\nprocess(start)\nfor neighbor in graph[start]:\nif neighbor not in visited:\ndfs(graph, neighbor, visited)\n\nAlgorithm (Iterative):\ndef dfs_iterative(graph, start):\nvisited = set()\nstack = [start]\nwhile stack:\nvertex = stack.pop()\nif vertex not in visited:\nvisited.add(vertex)\nprocess(vertex)\nfor neighbor in graph[vertex]:\nif neighbor not in visited:\nstack.append(neighbor)\n\nApplications:\n- Topological sorting of DAGs\n- Detecting cycles in directed graphs\n- Finding strongly connected components\n- Maze solving and pathfinding\n- Tree/forest detection in undirected graphs\n- Solving puzzles with backtracking\n\nDFS Traversal Orders:\n- Preorder: process vertex before its children\n- Postorder: process vertex after its children\n- Both useful for different applications\n\nVariants:\n- DFS on trees: no cycle detection needed\n- DFS with timestamps: discovery and finish times\n- Iterative deepening: DFS with depth limits\n- Bidirectional DFS: search from both ends\n\nImplementation Considerations:\n- Track visited vertices to avoid infinite loops\n- Handle disconnected components\n- Choose starting vertex strategically\n- Stack overflow prevention in deep graphs\n\nTime Complexity Analysis:\n- Each vertex visited exactly once: O(V)\n- Each edge examined exactly twice: O(E)\n- Total: O(V + E)\n\nUse Cases:\n- When you need to explore all reachable vertices\n- Detecting cycles or checking connectivity\n- Topological ordering\n- Finding cut vertices/bridges",
+            "id": "95209423cc09",
+            "quality_score": 4.429035541433442,
+            "relevance_score": 0.2609313726425171,
+            "source": "Algorithms 4th Edition by Sedgewick",
+            "subcategory": "graph_algorithms",
+            "tags": [
+              "dfs",
+              "graph-traversal",
+              "O(V+E)",
+              "backtracking"
+            ],
+            "title": "Depth-First Search (DFS) Analysis"
+          },
+          {
+            "category": "sorting",
+            "content": "Merge Sort is a stable divide-and-conquer algorithm with guaranteed performance.\n\nTime Complexity: O(n log n) in all cases (best, average, worst)\nSpace Complexity: O(n) - requires auxiliary array for merging\n\nAlgorithm steps:\n1. Divide array into two halves recursively until single elements\n2. Merge sorted halves back together in correct order\n3. Continue merging until complete sorted array\n\nMerging Process:\n1. Compare elements at front of two sorted arrays\n2. Take smaller element and advance it...",
+            "full_content": "Merge Sort is a stable divide-and-conquer algorithm with guaranteed performance.\n\nTime Complexity: O(n log n) in all cases (best, average, worst)\nSpace Complexity: O(n) - requires auxiliary array for merging\n\nAlgorithm steps:\n1. Divide array into two halves recursively until single elements\n2. Merge sorted halves back together in correct order\n3. Continue merging until complete sorted array\n\nMerging Process:\n1. Compare elements at front of two sorted arrays\n2. Take smaller element and advance its pointer\n3. Repeat until one array exhausted\n4. Copy remaining elements from other array\n\nKey Properties:\n- Stable: maintains relative order of equal elements\n- Predictable: always O(n log n) regardless of input\n- External: can sort data larger than available memory\n- Parallelizable: subarrays can be sorted independently\n\nVariations:\n- Bottom-up merge sort: iterative approach, no recursion\n- Natural merge sort: takes advantage of existing sorted runs\n- In-place merge sort: complex but O(1) space\n- Multi-way merge sort: merge k sorted arrays simultaneously\n\nSpace Optimizations:\n- Ping-pong merging: alternate between two auxiliary arrays\n- In-place merging: complex but reduces space to O(1)\n\nUse Cases:\n- When stability is required\n- External sorting (data doesn't fit in memory)\n- When guaranteed O(n log n) performance needed\n- Parallel processing environments\n- LinkedList sorting (no random access penalty)",
+            "id": "173ca1ab74a1",
+            "quality_score": 3.279625459650001,
+            "relevance_score": 0.24012887477874756,
+            "source": "Algorithms 4th Edition by Sedgewick",
+            "subcategory": "comparison_sorts",
+            "tags": [
+              "merge-sort",
+              "stable",
+              "divide-conquer",
+              "O(n log n)",
+              "guaranteed"
+            ],
+            "title": "Merge Sort Algorithm Analysis"
+          },
+          {
+            "category": "data_structures",
+            "content": "Hash Tables provide average O(1) operations using hash functions for key-to-index mapping.\n\nAverage Time Complexities:\n- Search: O(1)\n- Insertion: O(1)\n- Deletion: O(1)\n\nWorst Case: O(n) when all keys hash to same bucket\n\nSpace Complexity: O(n)\n\nCore Components:\n1. Hash Function: maps keys to array indices\n2. Collision Resolution: handles multiple keys mapping to same index\n3. Dynamic Resizing: maintains performance as size grows\n\nHash Function Properties:\n- Deterministic: same key always produc...",
+            "full_content": "Hash Tables provide average O(1) operations using hash functions for key-to-index mapping.\n\nAverage Time Complexities:\n- Search: O(1)\n- Insertion: O(1)\n- Deletion: O(1)\n\nWorst Case: O(n) when all keys hash to same bucket\n\nSpace Complexity: O(n)\n\nCore Components:\n1. Hash Function: maps keys to array indices\n2. Collision Resolution: handles multiple keys mapping to same index\n3. Dynamic Resizing: maintains performance as size grows\n\nHash Function Properties:\n- Deterministic: same key always produces same hash\n- Uniform distribution: spreads keys evenly across buckets\n- Fast computation: O(1) hash calculation\n- Avalanche effect: small input changes cause large hash changes\n\nCollision Resolution Strategies:\n\n1. Chaining (Separate Chaining):\n   - Store colliding elements in linked lists/arrays at each bucket\n   - Simple to implement and delete\n   - Performance degrades gracefully\n   - Extra memory for pointers\n\n2. Open Addressing:\n   - Find alternative slots when collision occurs\n   - Linear probing: check next slot sequentially\n   - Quadratic probing: check slots at quadratic intervals\n   - Double hashing: use second hash function for step size\n\nLoad Factor Management:\n- Load factor \u03b1 = n/m (elements/buckets)\n- Keep \u03b1 < 0.75 for good performance\n- Resize when load factor exceeds threshold\n- Rehash all elements to new table size\n\nResizing Strategy:\n- Double table size when load factor > 0.75\n- Halve table size when load factor < 0.25\n- Rehash all existing elements\n- Amortized O(1) operations despite occasional O(n) resize\n\nApplications:\n- Database indexing and caching\n- Compiler symbol tables\n- Set and dictionary implementations\n- Frequency counting and analytics\n- Distributed systems (consistent hashing)\n\nPerformance Considerations:\n- Choose good hash function for data type\n- Monitor and maintain appropriate load factor\n- Consider cache performance in hash function design\n- Handle hash collisions gracefully",
+            "id": "c59d43521970",
+            "quality_score": 4.248735704307853,
+            "relevance_score": 0.23698323965072632,
+            "source": "Introduction to Algorithms (CLRS)",
+            "subcategory": "hash_based",
+            "tags": [
+              "hash-table",
+              "O(1) average",
+              "collision-resolution",
+              "load-factor"
+            ],
+            "title": "Hash Table Data Structure Analysis"
+          }
+        ],
+        "input_metadata": {
+          "code_length": 105,
+          "language": "python",
+          "lines_of_code": 1
+        },
+        "processing_steps": [
+          "Enhanced RAG knowledge retrieval",
+          "AI reasoning with context",
+          "Structured data extraction",
+          "Learning feedback",
+          "Final compilation"
+        ],
+        "rag_stats": {
+          "average_quality": 4.024899139150015,
+          "categories": {
+            "algorithms": 2,
+            "data_structures": 2,
+            "fundamentals": 1,
+            "searching": 1,
+            "sorting": 3
+          },
+          "faiss_index_size": 9,
+          "knowledge_base_size": 9,
+          "system_status": {
+            "dependencies_available": true,
+            "embedding_model_loaded": true,
+            "faiss_available": true,
+            "mongodb_connected": true
+          },
+          "total_interactions": 63
+        }
+      },
+      "processing_metadata": {
+        "agent_used": "ComplexityAnalyzer",
+        "orchestrator_version": "2.0",
+        "start_time": "2025-06-01T18:58:42.723807",
+        "success": true
+      },
+      "request_type": "complexity_analysis"
+    },
+    "educational_report": {
+      "key_concepts": [
+        "Algorithm design principles",
+        "Time and space complexity",
+        "Data structure selection",
+        "Problem decomposition"
+      ],
+      "practical_applications": [
+        "Software engineering",
+        "Database systems",
+        "Machine learning algorithms",
+        "Computer graphics"
+      ],
+      "recommendations": [
+        "Practice implementing the algorithm from scratch",
+        "Analyze different test cases and edge cases",
+        "Study related algorithms and their trade-offs",
+        "Apply the algorithm to real-world problems"
+      ],
+      "related_algorithms": [
+        "Binary Search",
+        "Linear Search",
+        "Sorting Algorithms",
+        "Dynamic Programming"
+      ]
+    },
+    "input_analysis": {
+      "code_extracted": "Given piles of bananas and hours, return the minimum eating speed K such that Koko can finish in h hours.",
+      "detected_type": "code",
+      "problem_description": null
+    },
+    "performance_analysis": {
+      "files_generated": [
+        "complexity_analysis_comprehensive.png",
+        "performance_benchmark.png"
+      ],
+      "success": true
+    },
+    "visualizations": {
+      "algorithm_detected": "Sieve of Eratosthenes",
+      "algorithm_key": "sieve_of_eratosthenes",
+      "category": "math_number_theory",
+      "confidence": 0.18,
+      "files_generated": [
+        "binary_search_animation.png"
+      ],
+      "mongodb_powered": true,
+      "success": true
+    }
+  },
+  "timestamp": "2025-06-01T18:58:38.539597"
+}
