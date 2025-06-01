@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Intelligence Suite</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="title">
+                <div class="logo">🤖</div>
+                <div class="title-text">
+                    <h1>Algorithm Intelligence</h1>
+                    <span class="subtitle">AI-Powered Analysis Suite</span>
+                </div>
+            </div>
+            <div class="header-controls">
+                <div class="version-badge">v3.0</div>
+                <button id="settingsBtn" class="header-btn">⚙️</button>
+            </div>
+        </div>
+
+        <!-- Health Status Bar -->
+        <div class="health-bar">
+            <div id="healthStatus" class="health-indicator">
+                <div class="health-dot" id="healthDot"></div>
+                <span id="healthText">Checking connection...</span>
+                <div class="health-stats" id="healthStats"></div>
+            </div>
+            <button id="refreshHealth" class="refresh-btn">🔄</button>
+        </div>
+
+        <!-- Input Section -->
+        <div class="input-section clay-card">
+            <div class="input-header">
+                <h3>📝 Algorithm Query</h3>
+                <div class="input-controls">
+                    <select id="inputType" class="clay-select">
+                        <option value="auto">🔍 Auto Detect</option>
+                        <option value="problem">❓ Problem Description</option>
+                        <option value="code">💻 Code Analysis</option>
+                    </select>
+                </div>
+            </div>
+            
+            <textarea 
+                id="userInput" 
+                class="clay-textarea"
+                placeholder="Enter your algorithm question, problem description, or code here...
+
+Examples:
+• How does binary search work?
+• Implement quicksort algorithm with explanation
+• def bubble_sort(arr): [your code here]
+• Find the longest common subsequence
+• Analyze time complexity of this recursive function"
+                rows="6"
+            ></textarea>
+            
+            <div class="options-grid">
+                <label class="clay-checkbox">
+                    <input type="checkbox" id="includeVisualization" checked>
+                    <span class="checkmark">🎨</span>
+                    <span class="label">Include Visualizations</span>
+                </label>
+                <label class="clay-checkbox">
+                    <input type="checkbox" id="includePerformance" checked>
+                    <span class="checkmark">📊</span>
+                    <span class="label">Performance Analysis</span>
+                </label>
+                <label class="clay-checkbox">
+                    <input type="checkbox" id="includeEducational" checked>
+                    <span class="checkmark">📚</span>
+                    <span class="label">Educational Insights</span>
+                </label>
+            </div>
+
+            <button id="analyzeBtn" class="clay-button primary">
+                <span class="btn-icon">🚀</span>
+                <span class="btn-text">Analyze Algorithm</span>
+                <div class="btn-loader" id="btnLoader"></div>
+            </button>
+        </div>
+
+        <!-- Results Section with Tabs -->
+        <div id="resultsContainer" class="results-container" style="display: none;">
+            
+            <!-- Tab Navigation -->
+            <div class="tab-nav">
+                <button class="tab-btn active" data-tab="summary">📊 Summary</button>
+                <button class="tab-btn" data-tab="analysis">🧠 Analysis</button>
+                <button class="tab-btn" data-tab="solution">💡 Solution</button>
+                <button class="tab-btn" data-tab="visualizations">🎨 Visuals</button>
+                <button class="tab-btn" data-tab="performance">⚡ Performance</button>
+                <button class="tab-btn" data-tab="education">📚 Learning</button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="tab-content">
+                
+                <!-- Summary Tab -->
+                <div class="tab-pane active" id="summary-tab">
+                    <div class="summary-cards">
+                        <div class="summary-card clay-card">
+                            <div class="card-header">
+                                <span class="card-icon">🆔</span>
+                                <span class="card-title">Session</span>
+                            </div>
+                            <div class="card-value" id="sessionId">-</div>
+                        </div>
+                        
+                        <div class="summary-card clay-card">
+                            <div class="card-header">
+                                <span class="card-icon">⏱️</span>
+                                <span class="card-title">Processing Time</span>
+                            </div>
+                            <div class="card-value" id="processingTime">-</div>
+                        </div>
+                        
+                        <div class="summary-card clay-card">
+                            <div class="card-header">
+                                <span class="card-icon">🎯</span>
+                                <span class="card-title">Stages Completed</span>
+                            </div>
+                            <div class="card-value" id="stagesCompleted">-</div>
+                        </div>
+                        
+                        <div class="summary-card clay-card">
+                            <div class="card-header">
+                                <span class="card-icon">🔍</span>
+                                <span class="card-title">Algorithm Detected</span>
+                            </div>
+                            <div class="card-value" id="algorithmDetected">-</div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Complexity Display -->
+                    <div class="complexity-quick clay-card">
+                        <h4>⚡ Complexity Overview</h4>
+                        <div class="complexity-badges">
+                            <div class="complexity-badge time">
+                                <span class="badge-label">Time</span>
+                                <span class="badge-value" id="quickTimeComplexity">-</span>
+                            </div>
+                            <div class="complexity-badge space">
+                                <span class="badge-label">Space</span>
+                                <span class="badge-value" id="quickSpaceComplexity">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis Tab -->
+                <div class="tab-pane" id="analysis-tab">
+                    <!-- Problem Analysis -->
+                    <div class="analysis-section clay-card">
+                        <div class="section-header">
+                            <h4>🔍 Problem Analysis</h4>
+                            <button class="expand-btn" data-target="problemAnalysis">▼</button>
+                        </div>
+                        <div id="problemAnalysis" class="section-content">
+                            <div id="problemAnalysisContent"></div>
+                        </div>
+                    </div>
+
+                    <!-- RAG Knowledge Retrieval -->
+                    <div class="analysis-section clay-card">
+                        <div class="section-header">
+                            <h4>📚 Knowledge Retrieval (RAG)</h4>
+                            <button class="expand-btn" data-target="ragKnowledge">▼</button>
+                        </div>
+                        <div id="ragKnowledge" class="section-content">
+                            <div id="ragKnowledgeContent"></div>
+                        </div>
+                    </div>
+
+                    <!-- Complexity Analysis Detailed -->
+                    <div class="analysis-section clay-card">
+                        <div class="section-header">
+                            <h4>⚡ Detailed Complexity Analysis</h4>
+                            <button class="expand-btn" data-target="detailedComplexity">▼</button>
+                        </div>
+                        <div id="detailedComplexity" class="section-content">
+                            <div class="complexity-detailed">
+                                <div class="complexity-item">
+                                    <div class="complexity-type">Time Complexity</div>
+                                    <div class="complexity-value-large" id="timeComplexity">-</div>
+                                    <div class="complexity-reasoning" id="timeReasoning"></div>
+                                </div>
+                                <div class="complexity-item">
+                                    <div class="complexity-type">Space Complexity</div>
+                                    <div class="complexity-value-large" id="spaceComplexity">-</div>
+                                    <div class="complexity-reasoning" id="spaceReasoning"></div>
+                                </div>
+                            </div>
+                            <div id="complexityExplanation" class="complexity-explanation"></div>
+                        </div>
+                    </div>
+
+                    <!-- AI Reasoning -->
+                    <div class="analysis-section clay-card">
+                        <div class="section-header">
+                            <h4>🧠 AI Reasoning Process</h4>
+                            <button class="expand-btn" data-target="aiReasoning">▼</button>
+                        </div>
+                        <div id="aiReasoning" class="section-content">
+                            <div id="aiReasoningContent"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Solution Tab -->
+                <div class="tab-pane" id="solution-tab">
+                    <!-- Algorithm Info -->
+                    <div class="solution-section clay-card">
+                        <div class="algorithm-header">
+                            <div class="algorithm-info">
+                                <h3 id="algorithmName" class="algorithm-title">Generated Algorithm</h3>
+                                <p id="algorithmDescription" class="algorithm-desc"></p>
+                            </div>
+                            <div class="algorithm-badges">
+                                <span class="badge difficulty" id="difficultyBadge">Medium</span>
+                                <span class="badge type" id="typeBadge">Unknown</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Generated Code -->
+                    <div class="solution-section clay-card">
+                        <div class="code-section">
+                            <div class="code-header">
+                                <div class="code-title">
+                                    <span class="code-icon">💻</span>
+                                    <span>Generated Solution</span>
+                                </div>
+                                <div class="code-actions">
+                                    <button id="copyCodeBtn" class="action-btn">📋 Copy</button>
+                                    <button id="downloadCodeBtn" class="action-btn">💾 Download</button>
+                                </div>
+                            </div>
+                            <div class="code-container">
+                                <pre id="generatedCode" class="code-block"></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Algorithm Approaches -->
+                    <div class="solution-section clay-card">
+                        <div class="section-header">
+                            <h4>🎯 Algorithm Approaches</h4>
+                            <button class="expand-btn" data-target="algorithmApproaches">▼</button>
+                        </div>
+                        <div id="algorithmApproaches" class="section-content">
+                            <div id="approachesContent"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visualizations Tab -->
+                <div class="tab-pane" id="visualizations-tab">
+                    <div class="viz-status-card clay-card">
+                        <div id="visualizationStatus" class="viz-status"></div>
+                    </div>
+
+                    <!-- Visualization Gallery -->
+                    <div class="viz-gallery">
+                        <div id="visualizationList" class="viz-grid"></div>
+                    </div>
+
+                    <!-- Generated Graphs Display -->
+                    <div class="graphs-section clay-card">
+                        <div class="section-header">
+                            <h4>📊 Generated Analysis Graphs</h4>
+                            <button class="expand-btn" data-target="generatedGraphs">▼</button>
+                        </div>
+                        <div id="generatedGraphs" class="section-content">
+                            <div id="graphsContainer" class="graphs-container"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Tab -->
+                <div class="tab-pane" id="performance-tab">
+                    <!-- Performance Metrics -->
+                    <div class="performance-section clay-card">
+                        <h4>📈 Performance Metrics</h4>
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-icon">⚡</div>
+                                <div class="metric-info">
+                                    <div class="metric-label">Execution Speed</div>
+                                    <div class="metric-value" id="executionSpeed">-</div>
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-icon">💾</div>
+                                <div class="metric-info">
+                                    <div class="metric-label">Memory Usage</div>
+                                    <div class="metric-value" id="memoryUsage">-</div>
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-icon">🎯</div>
+                                <div class="metric-info">
+                                    <div class="metric-label">Efficiency Score</div>
+                                    <div class="metric-value" id="efficiencyScore">-</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Charts -->
+                    <div class="performance-section clay-card">
+                        <div class="section-header">
+                            <h4>📊 Performance Analysis Charts</h4>
+                            <button class="expand-btn" data-target="performanceCharts">▼</button>
+                        </div>
+                        <div id="performanceCharts" class="section-content">
+                            <div id="performanceChartsContainer"></div>
+                        </div>
+                    </div>
+
+                    <!-- Benchmarking Results -->
+                    <div class="performance-section clay-card">
+                        <div class="section-header">
+                            <h4>🏁 Benchmarking Results</h4>
+                            <button class="expand-btn" data-target="benchmarkResults">▼</button>
+                        </div>
+                        <div id="benchmarkResults" class="section-content">
+                            <div id="benchmarkContent"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Tab -->
+                <div class="tab-pane" id="education-tab">
+                    <!-- Learning Objectives -->
+                    <div class="education-section clay-card">
+                        <h4>🎯 Learning Objectives</h4>
+                        <div id="learningObjectives" class="education-content"></div>
+                    </div>
+
+                    <!-- Key Concepts -->
+                    <div class="education-section clay-card">
+                        <h4>🔑 Key Concepts</h4>
+                        <div id="keyConcepts" class="education-content"></div>
+                    </div>
+
+                    <!-- Recommendations -->
+                    <div class="education-section clay-card">
+                        <h4>💡 Recommendations</h4>
+                        <div id="recommendations" class="education-content"></div>
+                    </div>
+
+                    <!-- Related Algorithms -->
+                    <div class="education-section clay-card">
+                        <h4>🔗 Related Algorithms</h4>
+                        <div id="relatedAlgorithms" class="education-content"></div>
+                    </div>
+
+                    <!-- Practical Applications -->
+                    <div class="education-section clay-card">
+                        <h4>🌟 Practical Applications</h4>
+                        <div id="practicalApplications" class="education-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Bar -->
+            <div class="action-bar">
+                <button id="viewFullReport" class="clay-button secondary">
+                    <span>🌐</span> Full Report
+                </button>
+                <button id="downloadResults" class="clay-button secondary">
+                    <span>💾</span> Download
+                </button>
+                <button id="shareResults" class="clay-button secondary">
+                    <span>🔗</span> Share
+                </button>
+                <button id="newAnalysis" class="clay-button primary">
+                    <span>🔄</span> New Analysis
+                </button>
+            </div>
+        </div>
+
+        <!-- Error Section -->
+        <div id="errorSection" class="error-section clay-card" style="display: none;">
+            <div class="error-content">
+                <div class="error-icon">⚠️</div>
+                <div class="error-title">Analysis Failed</div>
+                <div class="error-message" id="errorMessage"></div>
+                <div class="error-actions">
+                    <button id="retryBtn" class="clay-button primary">🔄 Retry</button>
+                    <button id="reportBtn" class="clay-button secondary">📝 Report Issue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal" style="display: none;">
+        <div class="modal-content clay-card">
+            <div class="modal-header">
+                <h3>⚙️ Settings</h3>
+                <button class="close-btn" id="closeSettings">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label for="apiUrl">🌐 Backend API URL:</label>
+                    <input type="text" id="apiUrl" class="clay-input" placeholder="http://localhost:5000">
+                </div>
+                <div class="setting-group">
+                    <label for="timeout">⏱️ Request Timeout (seconds):</label>
+                    <input type="number" id="timeout" class="clay-input" min="10" max="120" value="60">
+                </div>
+                <div class="setting-group">
+                    <label class="clay-checkbox">
+                        <input type="checkbox" id="autoRefresh">
+                        <span class="checkmark">🔄</span>
+                        <span class="label">Auto-refresh health status</span>
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <label class="clay-checkbox">
+                        <input type="checkbox" id="showDebugInfo">
+                        <span class="checkmark">🐛</span>
+                        <span class="label">Show debug information</span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveSettings" class="clay-button primary">💾 Save Settings</button>
+                <button id="resetSettings" class="clay-button secondary">🔄 Reset to Default</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Analyzing algorithm...</div>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text" id="progressText">Initializing...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>

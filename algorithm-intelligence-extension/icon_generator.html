@@ -1,0 +1,56 @@
+<!-- Create this as icon_generator.html and open in browser -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Icon Generator</title>
+</head>
+<body>
+    <canvas id="canvas" width="128" height="128"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Create gradient background
+        const gradient = ctx.createLinearGradient(0, 0, 128, 128);
+        gradient.addColorStop(0, '#667eea');
+        gradient.addColorStop(1, '#764ba2');
+        
+        // Draw rounded rectangle
+        ctx.fillStyle = gradient;
+        ctx.roundRect(0, 0, 128, 128, 25);
+        ctx.fill();
+        
+        // Add robot emoji
+        ctx.font = '80px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = 'white';
+        ctx.fillText('🤖', 64, 90);
+        
+        // Download the image
+        canvas.toBlob(blob => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'icon128.png';
+            a.click();
+        });
+        
+        // Create smaller versions
+        [16, 48].forEach(size => {
+            const smallCanvas = document.createElement('canvas');
+            smallCanvas.width = size;
+            smallCanvas.height = size;
+            const smallCtx = smallCanvas.getContext('2d');
+            smallCtx.drawImage(canvas, 0, 0, size, size);
+            
+            smallCanvas.toBlob(blob => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `icon${size}.png`;
+                a.click();
+            });
+        });
+    </script>
+</body>
+</html>
