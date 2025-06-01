@@ -1,0 +1,230 @@
+# backend/visualization_database/algorithms_db.py
+#!/usr/bin/env python3
+"""
+Comprehensive Algorithm Visualization Database
+Maps algorithms to their visualization files and types
+"""
+
+import json
+import os
+
+# Comprehensive algorithm database
+ALGORITHMS_DB = {
+    "searching_algorithms": {
+        "linear_search": {
+            "name": "Linear Search",
+            "description": "Find element by checking each position sequentially",
+            "complexity": {"time": "O(n)", "space": "O(1)"},
+            "difficulty": "Basic",
+            "visualization_files": [
+                "searching/linear_search_animation.py",
+                "searching/linear_search_comparison.py",
+                "searching/linear_search_heatmap.py"
+            ],
+            "visualization_types": ["animation", "bar_chart", "heatmap", "step_by_step"]
+        },
+        "binary_search": {
+            "name": "Binary Search",
+            "description": "Find element in sorted array by dividing search space",
+            "complexity": {"time": "O(log n)", "space": "O(1)"},
+            "difficulty": "Intermediate",
+            "visualization_files": [
+                "searching/binary_search_animation.py",
+                "searching/binary_search_tree.py",
+                "searching/binary_search_complexity.py"
+            ],
+            "visualization_types": ["animation", "tree", "complexity_graph", "step_by_step"]
+        },
+        "ternary_search": {
+            "name": "Ternary Search",
+            "description": "Find maximum of unimodal function using divide by 3",
+            "complexity": {"time": "O(log n)", "space": "O(1)"},
+            "difficulty": "Advanced",
+            "visualization_files": [
+                "searching/ternary_search_function.py",
+                "searching/ternary_search_steps.py"
+            ],
+            "visualization_types": ["line_plot", "animation", "mathematical"]
+        }
+    },
+    "sorting_algorithms": {
+        "bubble_sort": {
+            "name": "Bubble Sort",
+            "description": "Sort by repeatedly swapping adjacent elements",
+            "complexity": {"time": "O(n²)", "space": "O(1)"},
+            "difficulty": "Basic",
+            "visualization_files": [
+                "sorting/bubble_sort_animation.py",
+                "sorting/bubble_sort_comparison.py",
+                "sorting/bubble_sort_heatmap.py"
+            ],
+            "visualization_types": ["animation", "bar_chart", "heatmap", "step_by_step"]
+        },
+        "quick_sort": {
+            "name": "Quick Sort",
+            "description": "Divide and conquer sorting with pivot partitioning",
+            "complexity": {"time": "O(n log n)", "space": "O(log n)"},
+            "difficulty": "Intermediate",
+            "visualization_files": [
+                "sorting/quick_sort_animation.py",
+                "sorting/quick_sort_tree.py",
+                "sorting/quick_sort_partition.py"
+            ],
+            "visualization_types": ["animation", "tree", "partition_view", "recursive"]
+        },
+        "merge_sort": {
+            "name": "Merge Sort",
+            "description": "Divide and conquer with merging sorted halves",
+            "complexity": {"time": "O(n log n)", "space": "O(n)"},
+            "difficulty": "Intermediate",
+            "visualization_files": [
+                "sorting/merge_sort_animation.py",
+                "sorting/merge_sort_tree.py",
+                "sorting/merge_sort_inversions.py"
+            ],
+            "visualization_types": ["animation", "tree", "divide_conquer", "merge_view"]
+        }
+    },
+    "graphs": {
+        "dijkstra": {
+            "name": "Dijkstra's Algorithm",
+            "description": "Find shortest path in weighted graph",
+            "complexity": {"time": "O((V+E)log V)", "space": "O(V)"},
+            "difficulty": "Advanced",
+            "visualization_files": [
+                "graphs/dijkstra_animation.py",
+                "graphs/dijkstra_table.py",
+                "graphs/dijkstra_tree.py"
+            ],
+            "visualization_types": ["graph_animation", "table", "tree", "path_finding"]
+        },
+        "bfs": {
+            "name": "Breadth-First Search",
+            "description": "Explore graph level by level",
+            "complexity": {"time": "O(V+E)", "space": "O(V)"},
+            "difficulty": "Intermediate",
+            "visualization_files": [
+                "graphs/bfs_animation.py",
+                "graphs/bfs_levels.py",
+                "graphs/bfs_queue.py"
+            ],
+            "visualization_types": ["graph_animation", "level_order", "queue_view"]
+        },
+        "dfs": {
+            "name": "Depth-First Search",
+            "description": "Explore graph by going deep first",
+            "complexity": {"time": "O(V+E)", "space": "O(V)"},
+            "difficulty": "Intermediate",
+            "visualization_files": [
+                "graphs/dfs_animation.py",
+                "graphs/dfs_stack.py",
+                "graphs/dfs_tree.py"
+            ],
+            "visualization_types": ["graph_animation", "stack_view", "tree"]
+        }
+    },
+    "dynamic_programming": {
+        "fibonacci": {
+            "name": "Fibonacci with Memoization",
+            "description": "Calculate Fibonacci numbers with caching",
+            "complexity": {"time": "O(n)", "space": "O(n)"},
+            "difficulty": "Basic",
+            "visualization_files": [
+                "dynamic_programming/fibonacci_tree.py",
+                "dynamic_programming/fibonacci_table.py",
+                "dynamic_programming/fibonacci_optimization.py"
+            ],
+            "visualization_types": ["recursion_tree", "dp_table", "optimization_comparison"]
+        },
+        "knapsack": {
+            "name": "0/1 Knapsack",
+            "description": "Maximize value within weight constraint",
+            "complexity": {"time": "O(nW)", "space": "O(nW)"},
+            "difficulty": "Advanced",
+            "visualization_files": [
+                "dynamic_programming/knapsack_table.py",
+                "dynamic_programming/knapsack_heatmap.py",
+                "dynamic_programming/knapsack_selection.py"
+            ],
+            "visualization_types": ["dp_table", "heatmap", "selection_trace"]
+        }
+    },
+    "linked_lists": {
+        "reverse_linked_list": {
+            "name": "Reverse Linked List",
+            "description": "Reverse the direction of linked list pointers",
+            "complexity": {"time": "O(n)", "space": "O(1)"},
+            "difficulty": "Basic",
+            "visualization_files": [
+                "linked_lists/reverse_animation.py",
+                "linked_lists/reverse_pointers.py",
+                "linked_lists/reverse_steps.py"
+            ],
+            "visualization_types": ["animation", "pointer_view", "step_by_step"]
+        },
+        "detect_cycle": {
+            "name": "Detect Cycle in Linked List",
+            "description": "Find if linked list has a cycle using Floyd's algorithm",
+            "complexity": {"time": "O(n)", "space": "O(1)"},
+            "difficulty": "Intermediate",
+            "visualization_files": [
+                "linked_lists/cycle_detection_animation.py",
+                "linked_lists/cycle_floyd.py",
+                "linked_lists/cycle_pointers.py"
+            ],
+            "visualization_types": ["animation", "two_pointer", "cycle_view"]
+        }
+    },
+    "trees": {
+        "tree_traversals": {
+            "name": "Tree Traversals",
+            "description": "Inorder, Preorder, Postorder traversals",
+            "complexity": {"time": "O(n)", "space": "O(h)"},
+            "difficulty": "Intermediate",
+            "visualization_files": [
+                "trees/traversal_animation.py",
+                "trees/traversal_comparison.py",
+                "trees/traversal_recursive.py"
+            ],
+            "visualization_types": ["tree_animation", "comparison", "recursion_stack"]
+        },
+        "bst_operations": {
+            "name": "BST Operations",
+            "description": "Insert, delete, search in Binary Search Tree",
+            "complexity": {"time": "O(log n)", "space": "O(1)"},
+            "difficulty": "Intermediate",
+            "visualization_files": [
+                "trees/bst_insert_animation.py",
+                "trees/bst_delete_animation.py",
+                "trees/bst_search_animation.py"
+            ],
+            "visualization_types": ["tree_animation", "operation_steps", "balance_view"]
+        }
+    }
+}
+
+def save_database():
+    """Save the database to JSON file"""
+    os.makedirs("visualization_database", exist_ok=True)
+    
+    with open("visualization_database/algorithms_db.json", "w") as f:
+        json.dump(ALGORITHMS_DB, f, indent=4)
+    
+    print(" Algorithm database saved to visualization_database/algorithms_db.json")
+    return ALGORITHMS_DB
+
+if __name__ == "__main__":
+    db = save_database()
+    
+    # Print summary
+    total_algorithms = sum(len(category) for category in db.values())
+    total_visualizations = sum(
+        len(algo["visualization_files"]) 
+        for category in db.values() 
+        for algo in category.values()
+    )
+    
+    print(f"📊 Database Summary:")
+    print(f"   Categories: {len(db)}")
+    print(f"   Total Algorithms: {total_algorithms}")
+    print(f"   Total Visualization Files: {total_visualizations}")

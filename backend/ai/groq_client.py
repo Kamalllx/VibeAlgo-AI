@@ -54,7 +54,7 @@ class GroqClient:
     def chat_completion(self, messages: List[Dict[str, str]], 
                        model: str = None, 
                        temperature: float = 0.1,
-                       max_tokens: int = 1024) -> GroqResponse:
+                       max_tokens: int = 8192) -> GroqResponse:
         """Send chat completion request to Groq API"""
         
         if self.mock_mode:
